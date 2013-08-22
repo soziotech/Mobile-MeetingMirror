@@ -1,4 +1,4 @@
-Mobile Meeting Mirror
+Mobile MeetingMirror
 =========
 
 ![alt text](https://raw.github.com/soziotech/Mobile-MeetingMirror/master/screenshots/mobilemeetingmirror.png "Mobile MeetingMirror")
