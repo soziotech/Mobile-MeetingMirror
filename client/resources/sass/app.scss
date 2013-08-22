@@ -1,0 +1,96 @@
+/*******************************************************************************
+ * Copyright (c) 2013 Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Martin Burkhard - Design and initial implementation
+ ******************************************************************************/
+
+
+$base-color: #555;
+$active-color: #FFF;
+$base-gradient: 'glossy';
+$tabs-dark: darken($base-color, 20%);
+$tabs-dark-active-color: saturate($active-color, 20%);
+$tabs-bottom-active-gradient: 'recessed';
+
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+
+// icon mixin:
+@include icon('help', '?');
+@include icon('travel', 'O');
+@include icon('credits', 'b');
+@include icon('imprint', 'n');
+@include icon('workshop', '^');
+
+.x-tabbar .x-tab {
+    padding: 0.4em 1em !important;
+}
+
+.x-list .x-list-header {
+    font-weight: bold;
+    //font-size: 14px;
+    //padding: 2px 10px;
+	color: #000;
+    border-top-color: #D1D1D1;
+    border-bottom: 2px solid #D1D1D1;
+    @include background(linear-gradient(color-stops(#CCCCCC, #DDDDDD)));
+}
+
+
+.detailtitle {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	box-sizing: border-box;
+	color: #333;
+	display: block;
+	font-family: SourceSansPro;
+	font-size: 18px;
+	font-weight: bold;
+	height: 22px;
+	margin-bottom: 5.4720001220703125px;
+	margin-left: 12.767999649047852px;
+	margin-right: 12.767999649047852px;
+	margin-top: 18.239999771118164px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	position: static;
+	text-shadow: white 0px 1px 1px;
+	white-space: nowrap;
+	width: 100%
+}
+
+.detailfield {
+	background-color: #FFF;
+	border: 1px solid #ccc;
+	padding: 10px;
+	-webkit-border-radius:5px;
+	width: 95%;
+}
+
+a {
+	/*color: #000;
+	text-decoration: none;*/
+	color: #333;
+	text-decoration: underline;
+}
+
+.detailfield hr {
+	width: 95%;
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+}
+
+h1 {
+	font-size: x-large;
+	font-weight: bold;
+}
+

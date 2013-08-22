@@ -1,0 +1,75 @@
+<#--
+   @copyright: Copyright (c) 2013 Peter Lachenmaier, Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+    	Peter Lachenmaier - Design and initial implementation
+    	Martin Burkhard - Mobile MeetingMirror JSON adaption
+--> 
+{"ident":"${item.getIdent()?json_string}"
+<#if item.getFirstname()?? && item.getFirstname() != "">,"firstname":"${item.getFirstname()?json_string}"</#if>
+<#if item.getLastname()?? && item.getLastname() != "">,"lastname":"${item.getLastname()?json_string}"</#if>
+<#if item.getName()?? && item.getName() != "">,"name":"${item.getName()?json_string}"</#if>
+<#if item.getImages()?? && (item.getImages()?size > 0)>
+,"imageUrl":
+<#list item.getImages() as img>
+"${img.getFileUrl()?json_string}"<#break>
+</#list>
+</#if>
+<#if item.getEmails()?? && (item.getEmails()?size > 0)>
+,"email":
+<#list item.getEmails() as email>
+"${email.getAdress()?json_string}"<#break>
+</#list>
+</#if>
+<#if item.getWebAccounts()?? && (item.getWebAccounts()?size > 0)>
+<#list item.getWebAccounts() as webAccount>
+<#if webAccount.hasMetaTag("twitter")>,"twitter":"<#if webAccount.getUsername()?substring(0, 1) != "@">@</#if>${webAccount.getUsername()?json_string}"</#if>
+<#if webAccount.hasMetaTag("mendeley")>,"mendeley":"${webAccount.getUsername()?replace("/profiles/","")?json_string}"</#if>
+</#list>
+</#if>
+<#if item.getOrganisations()?? && (item.getOrganisations()?size > 0)>
+,"organisations":[<#list item.getOrganisations() as org>
+"${org.getIdent()?json_string}"<#break>
+</#list>]
+</#if>
+<#if item.getAuthored()?? && (item.getAuthored()?size > 0)>
+,"authored":[<#list item.getAuthored() as auth>
+"${auth.getIdent()?json_string}"<#if auth_has_next>,</#if>
+</#list>]
+</#if>
+<#if item.getContributed()?? && (item.getContributed()?size > 0)>
+,"contributed":[<#list item.getContributed() as contr>
+"${contr.getIdent()?json_string}"<#if contr_has_next>,</#if>
+</#list>]
+</#if>
+<#if item.getConnectedBy()?? && (item.getConnectedBy()?size > 0)>
+,"chairIdents":[
+<#assign chair_count = 0>
+<#list item.getConnectedBy() as connection>
+<#if connection.hasMetaTag("agendaitem_chair")><#if (chair_count > 0)>,</#if>"${connection.getFrom().getIdent()?json_string}"<#assign chair_count = chair_count + 1></#if>
+</#list>],"speakerIdents":[
+<#assign speaker_count = 0>
+<#list item.getConnectedBy() as connection>
+<#if connection.hasMetaTag("agendaitem_presenter")><#if (speaker_count > 0)>,</#if>"${connection.getFrom().getIdent()?json_string}"<#assign speaker_count = speaker_count + 1></#if>
+</#list>]
+</#if>
+<#if item.getWebSites()?? && (item.getWebSites()?size > 0)>
+,"websites":[<#list item.getWebSites() as ws>
+"${ws.getAdress()?json_string}"<#break>
+</#list>]
+</#if>
+<#if item.getTags()?? && (item.getTags()?size > 0)>
+,"tags":[<#list item.getTags() as tag>
+"${tag.getName()?json_string}"<#if tag_has_next>,</#if>
+</#list>]
+</#if>
+<#if item.getMetaTags()?? && (item.getMetaTags()?size > 0)>
+,"metaTags":[<#list item.getMetaTags() as mt>
+"${mt.getName()?json_string}"<#if mt_has_next>,</#if>
+</#list>]
+</#if>}
+

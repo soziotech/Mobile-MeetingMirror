@@ -1,0 +1,21 @@
+<#--
+   @copyright: Copyright (c) 2013 Peter Lachenmaier, Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+    	Peter Lachenmaier - Design and initial implementation
+    	Martin Burkhard - Mobile MeetingMirror JSON adaption
+--> 
+{"ident":"${item.getIdent()?json_string}"
+<#if item.getStringValue()?? &&item.getStringValue() != "">,"name":"${item.getStringValue()?json_string}"</#if>
+<#if item.getStreet()?? && item.getStreet() != "">,"street":"${item.getStreet()?json_string}"</#if>
+<#if item.getHouseNumber()?? && item.getHouseNumber() != "">,"houseNumber":"${item.getHouseNumber()?json_string}"</#if>
+<#if item.getZipCode()?? && item.getZipCode() != "">,"zipCode":"${item.getZipCode()?json_string}"</#if>
+<#if item.getCity()?? && item.getCity() != "">,"city":"${item.getCity()?json_string}"</#if>
+<#if item.getCountry()?? && item.getCountry() != "">,"country":"${item.getCountry()?json_string}"</#if>
+<#if item.getLongitude()?? && item.getLongitude() != "">,"longitude":"${item.getLongitude()?json_string}"</#if>
+<#if item.getLatitude()?? && item.getLatitude() != "">,"latitude":"${item.getLatitude()?json_string}"</#if>}
+

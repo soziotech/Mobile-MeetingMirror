@@ -1,0 +1,35 @@
+<#--
+   @copyright: Copyright (c) 2013 Peter Lachenmaier, Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+    	Peter Lachenmaier - Design and initial implementation
+    	Martin Burkhard - Mobile MeetingMirror JSON adaption
+--> 
+{"ident":"${item.getIdent()?json_string}"
+<#setting locale="en_US">
+<#if item.getCreated()??>,"sortOrder":"${item.getCreated()?string("yyyyMMddHHmmss")}"
+,"createdDate":"${item.getCreated()?string("yyyy-MM-dd'T'HH:mm:ss")}"</#if>
+<#if item.getName()?? && item.getName() != "">,"name":"${item.getName()?json_string}"</#if>
+<#if item.getStringValue()?? && item.getStringValue() != "">,"stringValue":"${item.getStringValue()?string?replace("<p>","")?replace("</p>","<br/>")?replace("\n","")?replace("\r","")?json_string}"</#if>
+<#if item.getAuthor()??>,"author":"${item.getAuthor().getIdent()?json_string}"</#if>
+<#if item.getImages()?? && (item.getImages()?size > 0)>
+,"imageUrl":
+<#list item.getImages() as img>
+"${img.getFileUrl()?json_string}"<#break>
+</#list>
+</#if>
+<#if item.getWebSites()?? && (item.getWebSites()?size > 0)>
+,"websites":[<#list item.getWebSites() as ws>
+"${ws.getAdress()?json_string}"<#if ws_has_next>,</#if>
+</#list>]
+</#if>
+<#if item.getTags()?? && (item.getTags()?size > 0)>
+,"tags":[<#list item.getTags() as tag>
+"${tag.getName()?json_string}"<#if tag_has_next>,</#if>
+</#list>]
+</#if>}
+

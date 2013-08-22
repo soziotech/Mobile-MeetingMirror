@@ -1,0 +1,84 @@
+<#--
+   @copyright: Copyright (c) 2013 Peter Lachenmaier, Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+    	Peter Lachenmaier - Design and initial implementation
+    	Martin Burkhard - Mobile MeetingMirror JSON adaption
+--> 
+<#-- Locations -->
+{"getLocations":[
+<#assign locations_count = 0>
+<#list dataset.getLocations() as item>
+<#if item.eClass().getName() = "Location">
+<#if (locations_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_${item.eClass().getName()}_list_item.html" parse=true>
+<#assign locations_count = locations_count + 1></#if>
+</#list>],
+<#-- Organisations -->
+"getOrganisations":[
+<#assign org_count = 0>
+<#list dataset.getOrganisations() as item>
+<#if item.eClass().getName() = "Organisation" && !item.hasMetaTag("conference_hotel") && (item.hasMetaTag("institution") || item.hasMetaTag("wp_participant") || item.hasMetaTag("committee_member_organization") || item.hasMetaTag("conference_supportingorganisation"))>
+<#if (org_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Organisation_list_item.html" parse=true>
+<#assign org_count = org_count + 1></#if>
+</#list>],
+
+<#-- Persons / Participants -->
+"getPersons":[
+<#assign persons_count = 0>
+<#list dataset.getPersons() as item>
+<#if item.eClass().getName() = "Person" && (item.hasMetaTag("participant") || item.hasMetaTag("committee_member") || item.hasMetaTag("publication"))>
+<#if (persons_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Person_list_item.html" parse=true>
+<#assign persons_count = persons_count + 1></#if>
+</#list>],
+<#-- News Items -->
+"getNewsItems":[
+<#assign news_count = 0>
+<#list dataset.getMetaTag("newsitem").getInformationObjects() as item>
+<#if item.eClass().getName() = "Content">
+<#if (news_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_News_list_item.html" parse=true>
+<#assign news_count = news_count + 1></#if>
+</#list>],
+<#-- Tweets -->
+"getTweets":[
+<#assign tweets_count = 0>
+<#list dataset.getMetaTag("twitter").getInformationObjects() as item>
+<#if item.eClass().getName() = "Content">
+<#if (tweets_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Twitter_list_item.html" parse=true>
+<#assign tweets_count = tweets_count + 1></#if>
+</#list>],
+<#-- Publications -->
+"getPublications":[
+<#assign publications_count = 0>
+<#list dataset.getMetaTag("publication").getInformationObjects() as item>
+<#if item.eClass().getName() = "Content">
+<#if (publications_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Publication_list_item.html" parse=true>
+<#assign publications_count = publications_count + 1></#if>
+</#list>],
+<#-- Agenda Sessions -->
+"getAgendaSessions":[
+<#assign sessions_count = 0>
+<#list dataset.getMetaTag("agendaitem").getInformationObjects() as item>
+<#if item.eClass().getName() = "Content">
+<#if (sessions_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Session_list_item.html" parse=true>
+<#assign sessions_count = sessions_count + 1></#if>
+</#list>],
+<#-- Hotels -->
+"getHotels":[
+<#assign hotel_count = 0>
+<#list dataset.getOrganisations() as item>
+<#if item.eClass().getName() = "Organisation" && item.hasMetaTag("conference_hotel")>
+<#if (hotel_count > 0)>,</#if>
+<#include "/custom/${customTemplate}/*/tpl_Hotel_list_item.html" parse=true>
+<#assign hotel_count = hotel_count + 1></#if>
+</#list>]}

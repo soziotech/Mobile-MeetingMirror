@@ -1,0 +1,63 @@
+<#--
+   @copyright: Copyright (c) 2013 Peter Lachenmaier, Martin Burkhard - Cooperation Systems Center Munich (CSCM).
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+   
+   Contributors:
+    	Peter Lachenmaier - Design and initial implementation
+    	Martin Burkhard - Mobile MeetingMirror JSON adaption
+--> 
+{"ident":"${item.getIdent()?json_string}"
+<#if item.getName()?? && item.getName() != "">,"title":"${item.getName()?json_string}"</#if>
+<#if item.getStringValue()?? && item.getStringValue() != "">,"description":"${item.getStringValue()?json_string}"</#if>
+<#if item.getLocations()?? && (item.getLocations()?size > 0)>
+,"locationIdent":[<#list item.getLocations() as loc>
+"${loc.getIdent()?json_string}"<#break>
+</#list>]
+</#if>
+<#if item.getMetaInformations()?? && (item.getMetaInformations()?size > 0)>
+<#list item.getMetaInformations() as metaInf>
+<#if metaInf.eClass().getName() = "IndoorLocation">
+<#if metaInf.hasMetaTag("conference_indoorlocation_building")>,"building":"${metaInf.getName()?json_string}"</#if>
+<#if metaInf.hasMetaTag("conference_indoorlocation_floor")>,"floor":"${metaInf.getName()?json_string}"</#if>
+<#if metaInf.hasMetaTag("conference_indoorlocation_room")>,"room":"${metaInf.getName()?json_string}"</#if>
+</#if>
+<#if metaInf.eClass().getName() = "Event">
+<#if metaInf.hasMetaTag("agendaitem_start")>,"start_time":"${metaInf.getDate()?string("yyyy-MM-dd'T'HH:mm:ss")?replace("0013","2013")}"</#if>
+<#if metaInf.hasMetaTag("agendaitem_end")>,"end_time":"${metaInf.getDate()?string("yyyy-MM-dd'T'HH:mm:ss}")?replace("0013","2013")}"</#if>
+</#if>
+</#list>
+</#if>
+<#if item.getConnectedTo()?? && (item.getConnectedTo()?size > 0)>
+,"chairIdents":[
+<#assign chair_count = 0>
+<#list item.getConnectedTo() as connection>
+<#if connection.hasMetaTag("agendaitem_chair")><#if (chair_count > 0)>,</#if>"${connection.getTo().getIdent()?json_string}"<#assign chair_count = chair_count + 1></#if>
+</#list>],"speakerIdents":[
+<#assign speaker_count = 0>
+<#list item.getConnectedTo() as connection>
+<#if connection.hasMetaTag("agendaitem_presenter")><#if (speaker_count > 0)>,</#if>"${connection.getTo().getIdent()?json_string}"<#assign speaker_count = speaker_count + 1></#if>
+</#list>],"publicationIdents":[
+<#assign pub_count = 0>
+<#list item.getConnectedTo() as connection>
+<#if connection.hasMetaTag("agendaitem_publication")><#if (pub_count > 0)>,</#if>"${connection.getTo().getIdent()?json_string}"<#assign pub_count = pub_count + 1></#if>
+</#list>]
+</#if>
+,"session_type":
+<#if item.hasMetaTag("registration")>"Registration"</#if>
+<#if item.hasMetaTag("break")>"Break"</#if>
+<#if item.hasMetaTag("workshop")>"Workshop"</#if>
+<#if item.hasMetaTag("presentation")>"Presentation"</#if>
+<#if item.hasMetaTag("keynote")>"Keynote"</#if>
+<#if item.hasMetaTag("social")>"Social Event"</#if>
+<#if item.hasMetaTag("reception")>"Reception"</#if>
+<#if item.getWebSites()?? && (item.getWebSites()?size > 0)>
+,"website":<#list item.getWebSites() as ws>
+"${ws.getAdress()?json_string}"<#break>
+</#list>
+</#if>
+}
+
+
