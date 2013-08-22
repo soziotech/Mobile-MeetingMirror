@@ -1,7 +1,7 @@
 Mobile Meeting Mirror
 =========
 
-![alt text](https://github.com/sociotech/mobile-meetingmirror/blob/master/Screenshots/mobilemeetingmirror.jpg?raw=true "Mobile MeetingMirror")
+![alt text](https://raw.github.com/soziotech/Mobile-MeetingMirror/master/screenshots/mobilemeetingmirror.png "Mobile MeetingMirror")
 
 Mobile MeetingMirror™ is a conference application for Smartphones and Tablets presenting aggregated and enriched information from external Social Networking Services. Mobile MeetingMirror is based on CommunityMirrors™, a framework for Ubiquitous Natural User Interfaces for Cooperation Systems, and CommunityMashup, an integration solution for social data. Mobile MeetingMirror, CommunityMirrors and CommunityMashup are developed at the Cooperation Systems Center Munich (CSCM), Institute for Software Technology, Bundeswehr University Munich. (Source: Ott et al. 2011, 2012)
 
