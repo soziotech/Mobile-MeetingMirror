@@ -3,7 +3,7 @@ Mobile MeetingMirror
 
 ![alt text](https://raw.github.com/soziotech/Mobile-MeetingMirror/master/screenshots/mobilemeetingmirror.png "Mobile MeetingMirror")
 
-Mobile MeetingMirror™ is a conference application for Smartphones and Tablets presenting aggregated and enriched information from external Social Networking Services. Mobile MeetingMirror is based on [CommunityMirrors](http://www.soziotech.de/communitymirrors/)™, a framework for Ubiquitous Natural User Interfaces for Cooperation Systems, and [CommunityMashup](www.soziotech.org/communitymashup/), an integration solution for social data. Mobile MeetingMirror, CommunityMirrors and CommunityMashup are developed at the Cooperation Systems Center Munich (CSCM), Institute for Software Technology, Bundeswehr University Munich. (Source: Ott et al. 2011, 2012)
+Mobile MeetingMirror™ is a conference application for Smartphones and Tablets presenting aggregated and enriched information from external Social Networking Services. Mobile MeetingMirror is based on [CommunityMirrors](http://www.soziotech.de/communitymirrors/)™, a framework for Ubiquitous Natural User Interfaces for Cooperation Systems, and [CommunityMashup](www.soziotech.org/communitymashup/), an integration solution for social data. Mobile MeetingMirror, CommunityMirrors and CommunityMashup are developed at the [Cooperation Systems Center Munich (CSCM)](http://www.kooperationssysteme.de), [Institute for Software Technology](http://www.unibw.de/inf2/), [Bundeswehr University Munich](http://www.unibw.de). (Source: Ott et al. 2011, 2012)
 
 Features
 --------------------------------------------------------------------------------
@@ -42,8 +42,8 @@ This program and the accompanying materials are made available under the terms o
  
 Copyright
 --------------------------------------------------------------------------------
-Mobile Meeting Mirror, Copyright (c) 2013 Nico Hamann and Martin Burkhard, [Cooperation Systems Center Munich (CSCM)](http://www.kooperationssysteme.de), [Institute of Software Technology](http://www.unibw.de/inf2), [Bundeswehr University Munich](http://www.unibw.de)
-C&T 2013 conference logo, Copyright (c) 2013 [6th International Conference on Communities & Technologies](http://www.ct2013.cnss.de/).
+ * Mobile Meeting Mirror, Copyright (c) 2013 Nico Hamann and Martin Burkhard, [Cooperation Systems Center Munich (CSCM)](http://www.kooperationssysteme.de), [Institute of Software Technology](http://www.unibw.de/inf2), [Bundeswehr University Munich](http://www.unibw.de)
+ * C&T 2013 conference logo, Copyright (c) 2013 [6th International Conference on Communities & Technologies](http://www.ct2013.cnss.de/).
 
 Trademarks
 --------------------------------------------------------------------------------
